@@ -20,9 +20,6 @@ RUN curl -o matomo.tar.gz -SL https://builds.matomo.org/matomo-latest.tar.gz \
     && chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-# Expose port 8080 for web traffic
-EXPOSE 8080
-
 # Set environment variables for database configuration
 ENV MATOMO_DATABASE_HOST=localhost
 ENV MATOMO_DATABASE_USERNAME=matomo
