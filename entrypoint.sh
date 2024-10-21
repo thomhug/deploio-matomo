@@ -3,6 +3,9 @@
 # Generate a random salt for Matomo
 MATOMO_SALT=$(openssl rand -hex 32)
 
+MATOMO_ENABLE_DATABASE_SSL=yes
+MATOMO_DATABASE_SSL_CA_FILE="${MATOMO_SSL_CA}"
+
 # Create the config.ini.php file using environment variables
 cat << EOF > /var/www/html/config/config.ini.php
 [database]
