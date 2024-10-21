@@ -12,9 +12,6 @@ password = "${MATOMO_DATABASE_PASSWORD}"
 dbname = "${MATOMO_DATABASE_DBNAME}"
 port = "${MATOMO_DATABASE_PORT}"
 tables_prefix = "matomo_"
-ssl_key = "/etc/mysql/certs/client-key.pem"
-ssl_cert = "/etc/mysql/certs/client-cert.pem"
-ssl_ca = "/etc/mysql/certs/ca-cert.pem"
 
 [General]
 salt = "${MATOMO_SALT}"
