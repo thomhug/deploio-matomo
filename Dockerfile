@@ -29,32 +29,9 @@ RUN curl -o matomo.tar.gz -SL https://builds.matomo.org/matomo-latest.tar.gz \
     && chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-# Set environment variables for database configuration
-ENV MATOMO_DATABASE_HOST=localhost
-ENV MATOMO_DATABASE_USERNAME=matomo
-ENV MATOMO_DATABASE_PASSWORD=secret
-ENV MATOMO_DATABASE_DBNAME=matomo_db
-ENV MATOMO_DATABASE_PORT=3306
-ENV MATOMO_SSL_KEY=/etc/mysql/certs/client-key.pem
-ENV MATOMO_SSL_CERT=/etc/mysql/certs/client-cert.pem
-ENV MATOMO_SSL_CA=/etc/mysql/certs/ca-cert.pem
+# Copy the entrypoint script into the container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Generate a random salt for Matomo
-RUN MATOMO_SALT=$(openssl rand -hex 32) \
-    && echo "[database]\n\
-host = \"${MATOMO_DATABASE_HOST}\"\n\
-username = \"${MATOMO_DATABASE_USERNAME}\"\n\
-password = \"${MATOMO_DATABASE_PASSWORD}\"\n\
-dbname = \"${MATOMO_DATABASE_DBNAME}\"\n\
-port = \"${MATOMO_DATABASE_PORT}\"\n\
-tables_prefix = \"matomo_\"\n\
-ssl_key = \"${MATOMO_SSL_KEY}\"\n\
-ssl_cert = \"${MATOMO_SSL_CERT}\"\n\
-ssl_ca = \"${MATOMO_SSL_CA}\"\n\
-\n\
-[General]\n\
-salt = \"${MATOMO_SALT}\"" \
-> /var/www/html/config/config.ini.php
-
-# Start Apache server
-CMD ["apache2-foreground"]
+# Set the entrypoint to the shell script
+ENTRYPOINT ["/entrypoint.sh"]
