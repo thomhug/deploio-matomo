@@ -3,7 +3,7 @@ Repo with Dockerfile for Matomo Build on deplo.io
 
 Command to create the application:
 
-´´´
+```
 nctl create application matomo \
   --git-url=https://github.com/thomhug/deploio-matomo \
   --dockerfile \
@@ -13,4 +13,4 @@ nctl create application matomo \
   --env=MATOMO_DATABASE_PASSWORD=<pw> \
   --env=MATOMO_DATABASE_DBNAME=matomo_db \
   --env=MATOMO_DATABASE_PORT=3306
-´´´
+```
