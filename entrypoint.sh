@@ -11,7 +11,7 @@ username = "${MATOMO_DATABASE_USERNAME}"
 password = "${MATOMO_DATABASE_PASSWORD}"
 dbname = "${MATOMO_DATABASE_DBNAME}"
 enable_ssl = 1
-ssl_ca = /etc/ssl/certs/ca-cert.pem
+ssl_ca = /etc/mysql/certs/ca-cert.pem
 ssl_no_verify = 1
 
 [General]
