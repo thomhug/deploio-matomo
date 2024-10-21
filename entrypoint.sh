@@ -12,6 +12,8 @@ password = "${MATOMO_DATABASE_PASSWORD}"
 dbname = "${MATOMO_DATABASE_DBNAME}"
 port = "${MATOMO_DATABASE_PORT}"
 tables_prefix = "matomo_"
+enable_ssl = 1
+ssl_no_verify = 1
 
 [General]
 salt = "${MATOMO_SALT}"
